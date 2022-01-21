@@ -9,9 +9,9 @@ template <typename C>
 class Pipe {
 	std::queue<C> buf;
 	std::stack<std::queue<C>> mem;
-	std::function<C()> fetch;
+	std::function<C()> fetchf;
 public:
-	Pipe(std::function<C()> fetch) : fetch(fetch) {}
+	Pipe(std::function<C()> fetch) : fetchf(fetch) {}
 	virtual ~Pipe() = default;
 	C get() {
 		C next;
@@ -33,6 +33,11 @@ public:
 		buf.push(fetch());
 		return buf.front();
 	}
+
+	C fetch() {
+		return fetchf();
+	}
+	
 	void checkpoint() {
 		std::queue<C> top;
 		mem.push(top);
