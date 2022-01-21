@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stack>
+#include <functional>
 #include <queue>
 #include <iostream>
 
