@@ -22,7 +22,7 @@ public:
 			next = fetch();
 		
 		if (!mem.empty())
-			mem.top().push(next);
+			mem.top().push(std::move(next));
 
 		return next;
 	}
@@ -34,7 +34,7 @@ public:
 		return buf.front();
 	}
 
-	C fetch() {
+	virtual C fetch() {
 		return fetchf();
 	}
 	
